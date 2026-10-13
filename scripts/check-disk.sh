@@ -16,7 +16,7 @@ NR > 1 {
     usage=$5
     if (usage !~ /^[0-9]+%$/) { bad=1; next }
     sub(/%$/, "", usage)
-    if (usage+0 > limit) { print "ALERTE disque : " $0; alert=1 }
+    if (usage+0 >= limit) { print "ALERTE disque : " $0; alert=1 }
     count++
 }
 END { if (bad || !count) exit 2; if (alert) exit 1; print "OK : espace disque sous le seuil de " limit "%" }

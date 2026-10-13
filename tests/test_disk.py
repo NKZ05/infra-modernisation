@@ -17,6 +17,8 @@ class DiskTests(unittest.TestCase):
             return subprocess.run(['bash', str(SCRIPTS / 'check-disk.sh'), threshold],
                 env=dict(os.environ, PATH=tmp + ':' + os.environ['PATH']), capture_output=True)
     def test_below(self): self.assertEqual(self.run_disk(79).returncode, 0)
+    def test_equal(self): self.assertEqual(self.run_disk(80).returncode, 1)
     def test_full(self): self.assertEqual(self.run_disk(100).returncode, 1)
+    def test_leading_zero(self): self.assertEqual(self.run_disk(80, '080').returncode, 1)
     def test_invalid(self): self.assertEqual(self.run_disk(80, '101').returncode, 2)
     def test_df_failure(self): self.assertEqual(self.run_disk(0, failure=True).returncode, 2)
