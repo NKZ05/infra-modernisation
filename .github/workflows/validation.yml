@@ -1,0 +1,24 @@
+name: Validation des interventions
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vérifier la syntaxe Bash
+        run: |
+          for script in scripts/*.sh; do
+            [ -e "$script" ] || continue
+            bash -n "$script"
+          done
+      - name: Tester les interventions
+        run: |
+          if [ -d tests ]; then
+            python3 -m unittest discover -s tests -v
+          fi

@@ -1,0 +1,302 @@
+{
+  "title": "Modernisation Infrastructure & Sécurité",
+  "start": "2026-09-14",
+  "snapshot": "2026-10-09",
+  "milestones": [
+    {
+      "id": 1,
+      "title": "Audit et préparation",
+      "due": "2026-09-25"
+    },
+    {
+      "id": 2,
+      "title": "Modernisation des infrastructures",
+      "due": "2026-10-23"
+    },
+    {
+      "id": 3,
+      "title": "Sécurisation et supervision",
+      "due": "2026-11-20"
+    },
+    {
+      "id": 4,
+      "title": "Validation et mise en production",
+      "due": "2026-12-04"
+    }
+  ],
+  "issues": [
+    {
+      "id": 1,
+      "title": "Inventorier les serveurs et systèmes obsolètes",
+      "domain": "Systèmes",
+      "days": 4,
+      "start": "2026-09-14",
+      "end": "2026-09-25",
+      "milestone": 1,
+      "priority": "Haute",
+      "risk": "Moyen",
+      "status": "Terminé",
+      "dependencies": [],
+      "description": "Recenser OS, versions, rôles et propriétaires des serveurs.",
+      "acceptance": "Inventaire des deux sites validé ; systèmes obsolètes identifiés."
+    },
+    {
+      "id": 2,
+      "title": "Migrer le serveur de fichiers",
+      "domain": "Systèmes",
+      "days": 6,
+      "start": "2026-09-28",
+      "end": "2026-10-09",
+      "milestone": 2,
+      "priority": "Haute",
+      "risk": "Élevé",
+      "status": "Terminé",
+      "dependencies": [
+        1
+      ],
+      "description": "Migrer les fichiers et ACL vers un système maintenu.",
+      "acceptance": "ACL et intégrité vérifiées ; sauvegarde et retour arrière testés."
+    },
+    {
+      "id": 3,
+      "title": "Migrer le serveur applicatif",
+      "domain": "Systèmes",
+      "days": 8,
+      "start": "2026-09-28",
+      "end": "2026-10-09",
+      "milestone": 2,
+      "priority": "Haute",
+      "risk": "Élevé",
+      "status": "Terminé",
+      "dependencies": [
+        1
+      ],
+      "description": "Migrer le service applicatif vers un OS maintenu.",
+      "acceptance": "Tests fonctionnels validés ; fenêtre de bascule et retour arrière documentés."
+    },
+    {
+      "id": 4,
+      "title": "Auditer les flux et équipements des deux sites",
+      "domain": "Réseaux",
+      "days": 3,
+      "start": "2026-09-14",
+      "end": "2026-09-25",
+      "milestone": 1,
+      "priority": "Haute",
+      "risk": "Moyen",
+      "status": "Terminé",
+      "dependencies": [],
+      "description": "Cartographier les flux et les équipements intersites.",
+      "acceptance": "Schéma réseau et matrice des flux validés."
+    },
+    {
+      "id": 5,
+      "title": "Segmenter le réseau en VLAN",
+      "domain": "Réseaux",
+      "days": 7,
+      "start": "2026-10-12",
+      "end": "2026-10-30",
+      "milestone": 3,
+      "priority": "Haute",
+      "risk": "Élevé",
+      "status": "Bloqué",
+      "dependencies": [
+        4
+      ],
+      "description": "Isoler utilisateurs, serveurs et administration.",
+      "acceptance": "VLAN opérationnels ; tests d’isolation réussis ; équipement réceptionné."
+    },
+    {
+      "id": 6,
+      "title": "Déployer le pare-feu intersites et le VPN",
+      "domain": "Réseaux",
+      "days": 5,
+      "start": "2026-11-02",
+      "end": "2026-11-13",
+      "milestone": 3,
+      "priority": "Haute",
+      "risk": "Élevé",
+      "status": "À faire",
+      "dependencies": [
+        5
+      ],
+      "description": "Appliquer les flux autorisés et sécuriser les échanges intersites.",
+      "acceptance": "Flux non autorisés rejetés ; tunnel et journalisation vérifiés."
+    },
+    {
+      "id": 7,
+      "title": "Auditer les vulnérabilités et comptes privilégiés",
+      "domain": "Cybersécurité",
+      "days": 4,
+      "start": "2026-09-14",
+      "end": "2026-09-25",
+      "milestone": 1,
+      "priority": "Haute",
+      "risk": "Élevé",
+      "status": "Terminé",
+      "dependencies": [],
+      "description": "Établir une référence des vulnérabilités et droits administrateurs.",
+      "acceptance": "Rapport priorisé validé ; comptes sans propriétaire identifiés."
+    },
+    {
+      "id": 8,
+      "title": "Déployer le MFA pour les administrateurs",
+      "domain": "Cybersécurité",
+      "days": 5,
+      "start": "2026-10-19",
+      "end": "2026-11-06",
+      "milestone": 3,
+      "priority": "Critique",
+      "risk": "Élevé",
+      "status": "En cours",
+      "dependencies": [
+        7
+      ],
+      "description": "Activer le MFA et prévoir les comptes de secours.",
+      "acceptance": "Tous les comptes administrateurs protégés ; secours testé et tracé."
+    },
+    {
+      "id": 9,
+      "title": "Formaliser la réponse aux incidents de sécurité",
+      "domain": "Cybersécurité",
+      "days": 3,
+      "start": "2026-11-09",
+      "end": "2026-11-20",
+      "milestone": 3,
+      "priority": "Haute",
+      "risk": "Moyen",
+      "status": "À faire",
+      "dependencies": [
+        7
+      ],
+      "description": "Définir détection, escalade, confinement et communication.",
+      "acceptance": "Procédure validée ; exercice de simulation effectué."
+    },
+    {
+      "id": 10,
+      "title": "Centraliser les journaux des serveurs",
+      "domain": "Supervision",
+      "days": 5,
+      "start": "2026-10-05",
+      "end": "2026-10-23",
+      "milestone": 2,
+      "priority": "Haute",
+      "risk": "Moyen",
+      "status": "En cours",
+      "dependencies": [
+        1,
+        4
+      ],
+      "description": "Configurer une collecte centralisée avec rétention et accès contrôlé.",
+      "acceptance": "Journaux des deux sites reçus ; horodatage et rétention vérifiés."
+    },
+    {
+      "id": 11,
+      "title": "Créer un contrôle des seuils disque",
+      "domain": "Supervision",
+      "days": 2,
+      "start": "2026-10-12",
+      "end": "2026-10-16",
+      "milestone": 2,
+      "priority": "Haute",
+      "risk": "Moyen",
+      "status": "À faire",
+      "dependencies": [
+        1
+      ],
+      "description": "Livrer un script Bash de contrôle disque exploitable en supervision.",
+      "acceptance": "Seuil configurable ; codes de sortie 0/1/2 ; cas limites testés."
+    },
+    {
+      "id": 12,
+      "title": "Configurer les alertes de disponibilité",
+      "domain": "Supervision",
+      "days": 4,
+      "start": "2026-10-26",
+      "end": "2026-11-13",
+      "milestone": 3,
+      "priority": "Haute",
+      "risk": "Moyen",
+      "status": "À faire",
+      "dependencies": [
+        10,
+        11
+      ],
+      "description": "Définir des alertes et les destinataires d’astreinte.",
+      "acceptance": "Panne simulée détectée ; notification et acquittement testés."
+    },
+    {
+      "id": 13,
+      "title": "Auditer les sauvegardes et définir RPO/RTO",
+      "domain": "Continuité d’activité",
+      "days": 3,
+      "start": "2026-09-14",
+      "end": "2026-09-25",
+      "milestone": 1,
+      "priority": "Haute",
+      "risk": "Élevé",
+      "status": "Terminé",
+      "dependencies": [],
+      "description": "Vérifier couverture, fréquence et objectifs de reprise.",
+      "acceptance": "Rapport validé ; RPO de 24 h et RTO de 4 h acceptés pour le labo."
+    },
+    {
+      "id": 14,
+      "title": "Automatiser une sauvegarde avec contrôle d’intégrité",
+      "domain": "Continuité d’activité",
+      "days": 4,
+      "start": "2026-10-12",
+      "end": "2026-10-23",
+      "milestone": 2,
+      "priority": "Haute",
+      "risk": "Élevé",
+      "status": "À faire",
+      "dependencies": [
+        13
+      ],
+      "description": "Créer une archive et un manifeste SHA-256 vérifiables.",
+      "acceptance": "Archive restaurable ; intégrité vérifiée ; erreurs propagées."
+    },
+    {
+      "id": 15,
+      "title": "Tester le PRA et valider la mise en production",
+      "domain": "Continuité d’activité",
+      "days": 6,
+      "start": "2026-11-23",
+      "end": "2026-12-04",
+      "milestone": 4,
+      "priority": "Haute",
+      "risk": "Élevé",
+      "status": "À faire",
+      "dependencies": [
+        2,
+        3,
+        6,
+        8,
+        9,
+        12,
+        14,
+        16
+      ],
+      "description": "Effectuer une restauration isolée et valider les critères de production.",
+      "acceptance": "RPO/RTO mesurés ; recette, réserves et décision de production documentées."
+    },
+    {
+      "id": 16,
+      "title": "Corriger une vulnérabilité critique sur le serveur exposé",
+      "domain": "Cybersécurité",
+      "days": 2,
+      "start": "2026-10-12",
+      "end": "2026-10-16",
+      "milestone": 2,
+      "priority": "Critique",
+      "risk": "Élevé",
+      "status": "En cours",
+      "dependencies": [
+        7
+      ],
+      "description": "Simuler une découverte en S4 ; restreindre l’exposition puis appliquer un correctif validé. Aucune CVE réelle n’est inventée.",
+      "acceptance": "Exposition réduite ; sauvegarde préalable ; correctif et scan de contrôle validés."
+    }
+  ]
+}
