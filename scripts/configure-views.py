@@ -14,7 +14,7 @@ fields = state['fields']
 result = api.graphql('query($p:ID!){node(id:$p){... on ProjectV2{fields(first:30){nodes{... on ProjectV2Field{id name} ... on ProjectV2SingleSelectField{id name options{id name}}}} views(first:20){nodes{id name number}}}}}', {'p': project['id']})['node']
 native = {x['name']: x for x in result['fields']['nodes']}
 existing = {x['name']: x for x in result['views']['nodes']}
-visible = [native['Title']['id']] + [fields[x]['id'] for x in ['Avancement', 'Priorité', 'Domaine technique', 'Charge estimée', 'Risque', 'Date de début', 'Date de fin prévue']] + [native['Milestone']['id']]
+visible = [native['Title']['id'], native['Status']['id']] + [fields[x]['id'] for x in ['Avancement', 'Priorité', 'Domaine technique', 'Charge estimée', 'Risque', 'Date de début', 'Date de fin prévue']] + [native['Milestone']['id']]
 views = [
     ('Tableau opérationnel', 'BOARD_LAYOUT', ''),
     ('Suivi des charges', 'TABLE_LAYOUT', ''),
@@ -27,9 +27,14 @@ state['views'] = {}
 for name, layout, filter_value in views:
     view = existing.get(name)
     if not view:
+        configuration = {'projectId': project['id'], 'name': name, 'layout': layout}
+        if layout != 'ROADMAP_LAYOUT':
+            configuration['configuration'] = {'visibleFieldIds': visible}
         view = api.graphql('mutation($input:CreateProjectV2ViewInput!){createProjectV2View(input:$input){projectV2View{id name number}}}',
-                           {'input': {'projectId': project['id'], 'name': name, 'layout': layout,
-                                      'configuration': {'visibleFieldIds': visible}}})['createProjectV2View']['projectV2View']
+                           {'input': configuration})['createProjectV2View']['projectV2View']
+    if layout != 'ROADMAP_LAYOUT':
+        api.graphql('mutation($input:UpdateProjectV2ViewInput!){updateProjectV2View(input:$input){projectV2View{id}}}',
+                    {'input': {'viewId': view['id'], 'configuration': {'visibleFieldIds': visible}}})
     if filter_value:
         api.graphql('mutation($input:UpdateProjectV2ViewInput!){updateProjectV2View(input:$input){projectV2View{id}}}',
                     {'input': {'viewId': view['id'], 'filter': filter_value}})

@@ -1,18 +1,18 @@
 # Configuration GitHub Projects
 
-La publication crée les données ; elle ne crée pas les vues ni les graphiques. Utiliser `publication.json` pour ouvrir le projet et retrouver les issues. Le dépôt et le Project sont publics pour permettre l’accès à l’enseignant. Ne pas y déposer de secrets ni de données d’infrastructure réelle.
+Les données et les six vues sont publiées. Les types de vues, champs visibles et filtres sont configurés via l’API. Les regroupements, sommes, champs de dates de la roadmap et les graphiques ne sont pas configurables par les mutations exposées : ils restent à finaliser dans l’interface. Utiliser `publication.json` pour ouvrir le projet et retrouver les issues. Le dépôt et le Project sont publics pour permettre l’accès à l’enseignant. Ne pas y déposer de secrets ni de données d’infrastructure réelle.
 
 ## Champs
 
 L’outil crée Priorité (Critique/Haute/Normale/Basse), Domaine technique (cinq domaines), Charge estimée (nombre de jours-personnes), Risque (Élevé/Moyen/Faible), deux champs Date et Avancement (À faire/En cours/Bloqué/Terminé).
 
-Pour éviter deux statuts concurrents, configurer le champ natif **Status** avec les mêmes quatre options, recopier les valeurs d’Avancement depuis la table de planification, puis supprimer le champ personnalisé Avancement et renommer Status en **Avancement** si l’interface le permet. Ce champ natif représente alors l’avancement demandé et permet les workflows intégrés. Vérifier les 16 lignes avant suppression.
+GitHub conserve le nom natif **Status**. Les sept champs personnalisés sont présents, dont **Avancement**, et les deux statuts portent les mêmes valeurs grâce à `scripts/sync-status.py`. Utiliser Status pour le Kanban natif et Avancement pour les analyses demandées. Après tout changement manuel, mettre les deux champs à jour ou relancer la synchronisation.
 
 ## Quatre vues à enregistrer
 
 | Vue | Configuration | Informations affichées |
 |---|---|---|
-| Tableau opérationnel | Board ; grouper par Avancement | Priorité, Domaine technique, Risque, Charge estimée, Date de fin prévue |
+| Tableau opérationnel | Board ; grouper par Status | Priorité, Domaine technique, Risque, Charge estimée, Date de fin prévue |
 | Suivi des charges | Table ; grouper par Domaine technique ; Field sum → Charge estimée | Charge, priorité, risque, avancement ; total par groupe |
 | Roadmap | Roadmap ; début = Date de début ; fin = Date de fin prévue ; zoom mensuel, septembre–décembre 2026 | Grouper par milestone ; afficher les dates et les dépendances dans les issues |
 | Synthèse de direction | Table ; filtre `is:open` ; grouper par Priorité | Risque, avancement, dates et jalon ; trier par date de fin |
@@ -23,7 +23,7 @@ Suivi des charges : activer les sommes dans les en-têtes de groupes. Pour un to
 
 ## Insights
 
-Créer trois graphiques actuels, sans filtre excluant les issues fermées :
+Créer trois graphiques actuels, sans filtre excluant les issues fermées. Pour la photographie S4, les valeurs de référence sont ci-dessous ; le Project actuel comporte ensuite deux interventions terminées de plus :
 
 1. « Répartition par domaine » : barres, X = Domaine technique, Y = nombre d’items. Résultat : 3 / 3 / 4 / 3 / 3.
 2. « Avancement S4 » : barres, X = Avancement, Y = nombre d’items. Résultat : À faire 6, En cours 3, Bloqué 1, Terminé 6.
@@ -35,7 +35,7 @@ Ajouter si possible « Charge par domaine » : X = Domaine technique, Y = somme 
 
 Les données publiées représentent déjà la fin S4 ; les détails des reports se trouvent dans `planification.md`. La vulnérabilité est un scénario pédagogique, pas un diagnostic réel.
 
-Activer les workflows intégrés « Item closed » → Terminé et « Item reopened » → À faire sur le champ natif d’avancement. Après fusion des deux PR, vérifier la fermeture des issues 11 et 14 (identifiants locaux) et la mise à jour de leurs items. Il y aura alors 8 tâches terminées, 3 en cours, 1 bloquée et 4 à faire : cet état technique est postérieur à la photographie S4. Préserver la synthèse S4 comme historique et dater la nouvelle validation.
+Le workflow intégré « Auto-add sub-issues to project » est confirmé actif. « Item closed » est désactivé ; l’activer et choisir Terminé sur le champ natif Status. Vérifier dans l’interface si un workflow de réouverture est disponible avant de le configurer. Après fusion des deux PR, vérifier la fermeture des issues 11 et 14 (identifiants locaux) et la mise à jour de leurs items. Il y aura alors 8 tâches terminées, 3 en cours, 1 bloquée et 4 à faire : cet état technique est postérieur à la photographie S4. Préserver la synthèse S4 comme historique et dater la nouvelle validation.
 
 Vérifier l’accès enseignant en ouvrant les URL dans une fenêtre privée ; enregistrer des captures des quatre vues, des trois graphiques et des workflows.
 

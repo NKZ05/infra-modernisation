@@ -1,0 +1,145 @@
+{
+  "verified_at": "2026-10-13T09:07:19.616783+00:00",
+  "repository": "https://github.com/NKZ05/infra-modernisation",
+  "project": "https://github.com/users/NKZ05/projects/2",
+  "charges": {
+    "Systèmes": 18.0,
+    "Réseaux": 15.0,
+    "Cybersécurité": 14.0,
+    "Supervision": 11.0,
+    "Continuité d’activité": 13.0
+  },
+  "statuses": {
+    "Terminé": 8,
+    "Bloqué": 1,
+    "À faire": 4,
+    "En cours": 3
+  },
+  "views": [
+    {
+      "name": "View 1",
+      "layout": "TABLE_LAYOUT",
+      "filter": null,
+      "groupByFields": {
+        "nodes": []
+      }
+    },
+    {
+      "name": "Tableau opérationnel",
+      "layout": "BOARD_LAYOUT",
+      "filter": null,
+      "groupByFields": {
+        "nodes": []
+      }
+    },
+    {
+      "name": "Suivi des charges",
+      "layout": "TABLE_LAYOUT",
+      "filter": null,
+      "groupByFields": {
+        "nodes": []
+      }
+    },
+    {
+      "name": "Roadmap",
+      "layout": "ROADMAP_LAYOUT",
+      "filter": null,
+      "groupByFields": {
+        "nodes": []
+      }
+    },
+    {
+      "name": "Synthèse de direction",
+      "layout": "TABLE_LAYOUT",
+      "filter": "is:open",
+      "groupByFields": {
+        "nodes": []
+      }
+    },
+    {
+      "name": "Risques élevés",
+      "layout": "TABLE_LAYOUT",
+      "filter": "is:open Risque:Élevé",
+      "groupByFields": {
+        "nodes": []
+      }
+    },
+    {
+      "name": "Charge globale",
+      "layout": "TABLE_LAYOUT",
+      "filter": null,
+      "groupByFields": {
+        "nodes": []
+      }
+    }
+  ],
+  "workflows": [
+    {
+      "name": "Auto-add sub-issues to project",
+      "enabled": true
+    },
+    {
+      "name": "Auto-close issue",
+      "enabled": false
+    },
+    {
+      "name": "Item added to project",
+      "enabled": false
+    },
+    {
+      "name": "Item closed",
+      "enabled": false
+    },
+    {
+      "name": "Pull request linked to issue",
+      "enabled": false
+    },
+    {
+      "name": "Pull request merged",
+      "enabled": false
+    }
+  ],
+  "pull_requests": [
+    {
+      "url": "https://github.com/NKZ05/infra-modernisation/pull/17",
+      "merged": true,
+      "issue": 11,
+      "issue_state": "closed",
+      "commits": [
+        {
+          "sha": "5f3a24c09a46c221f6f46021cef82266ccf5eb7a",
+          "url": "https://github.com/NKZ05/infra-modernisation/commit/5f3a24c09a46c221f6f46021cef82266ccf5eb7a",
+          "message": "feat: contrôler les seuils disque — Refs #11"
+        },
+        {
+          "sha": "b1541654a8cbf68ee8cb9de2a9854850fe8a6fc3",
+          "url": "https://github.com/NKZ05/infra-modernisation/commit/b1541654a8cbf68ee8cb9de2a9854850fe8a6fc3",
+          "message": "test: valider les entrées et erreurs du contrôle disque — Refs #11"
+        },
+        {
+          "sha": "431bb2bb884544e2fcf5fe22725eca5ea7c54dc6",
+          "url": "https://github.com/NKZ05/infra-modernisation/commit/431bb2bb884544e2fcf5fe22725eca5ea7c54dc6",
+          "message": "fix: alerter dès le seuil exact et accepter 080 — Refs #11"
+        }
+      ]
+    },
+    {
+      "url": "https://github.com/NKZ05/infra-modernisation/pull/18",
+      "merged": true,
+      "issue": 14,
+      "issue_state": "closed",
+      "commits": [
+        {
+          "sha": "d6037e57b9b29a3803805297c20c234e2c902e7d",
+          "url": "https://github.com/NKZ05/infra-modernisation/commit/d6037e57b9b29a3803805297c20c234e2c902e7d",
+          "message": "feat: archiver un répertoire de sauvegarde — Refs #14"
+        },
+        {
+          "sha": "17c3e3b6e0bd20d762015618266164f67f840a64",
+          "url": "https://github.com/NKZ05/infra-modernisation/commit/17c3e3b6e0bd20d762015618266164f67f840a64",
+          "message": "feat: vérifier l’intégrité et sécuriser la destination — Refs #14"
+        }
+      ]
+    }
+  ]
+}
